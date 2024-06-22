@@ -40,4 +40,4 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 ---
 
-Thank you for visiting the DotNetCraft.TipsAndTricks repository. We hope you find these examples useful and that they help you write more performant C# code. Happy coding!
+Thank you for visiting the DotNetCraft.TipsAndTricks repository. We hope you find these examples useful and that they help you write more performant C# code.
