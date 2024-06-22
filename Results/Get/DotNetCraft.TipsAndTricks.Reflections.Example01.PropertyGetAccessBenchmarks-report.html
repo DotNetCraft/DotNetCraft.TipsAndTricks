@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='utf-8' />
+<title>DotNetCraft.TipsAndTricks.Reflections.Example01.PropertyGetAccessBenchmarks-20240622-151429</title>
+
+<style type="text/css">
+	table { border-collapse: collapse; display: block; width: 100%; overflow: auto; }
+	td, th { padding: 6px 13px; border: 1px solid #ddd; text-align: right; }
+	tr { background-color: #fff; border-top: 1px solid #ccc; }
+	tr:nth-child(even) { background: #f8f8f8; }
+</style>
+</head>
+<body>
+<pre><code>
+BenchmarkDotNet v0.13.12, Windows 10 (10.0.19045.4529/22H2/2022Update)
+Intel Core i7-6700K CPU 4.00GHz (Skylake), 1 CPU, 8 logical and 4 physical cores
+.NET SDK 8.0.300
+  [Host]   : .NET 5.0.17 (5.0.1722.21314), X64 RyuJIT AVX2 [AttachedDebugger]
+  .NET 5.0 : .NET 5.0.17 (5.0.1722.21314), X64 RyuJIT AVX2
+  .NET 6.0 : .NET 6.0.30 (6.0.3024.21525), X64 RyuJIT AVX2
+  .NET 7.0 : .NET 7.0.19 (7.0.1924.21523), X64 RyuJIT AVX2
+  .NET 8.0 : .NET 8.0.5 (8.0.524.21615), X64 RyuJIT AVX2
+</code></pre>
+<pre><code></code></pre>
+
+<table>
+<thead><tr><th>Method            </th><th>Job</th><th>Runtime</th><th>Mean </th><th>Error</th><th>StdDev</th><th>Median</th><th>Min  </th><th>Max  </th><th>Ratio</th><th>RatioSD</th>
+</tr>
+</thead><tbody><tr><td>DirectAccessGet</td><td>.NET 5.0</td><td>.NET 5.0</td><td>0.0003 ns</td><td>0.0012 ns</td><td>0.0011 ns</td><td>0.0000 ns</td><td>0.0000 ns</td><td>0.0042 ns</td><td>?</td><td>?</td>
+</tr><tr><td>PrecompiledExpressionGet</td><td>.NET 5.0</td><td>.NET 5.0</td><td>0.6956 ns</td><td>0.0129 ns</td><td>0.0114 ns</td><td>0.6929 ns</td><td>0.6801 ns</td><td>0.7143 ns</td><td>?</td><td>?</td>
+</tr><tr><td>DynamicGet</td><td>.NET 5.0</td><td>.NET 5.0</td><td>6.7614 ns</td><td>0.1367 ns</td><td>0.2129 ns</td><td>6.7062 ns</td><td>6.4644 ns</td><td>7.3579 ns</td><td>?</td><td>?</td>
+</tr><tr><td>ReflectionGet</td><td>.NET 5.0</td><td>.NET 5.0</td><td>85.0261 ns</td><td>0.7431 ns</td><td>0.6205 ns</td><td>84.9003 ns</td><td>84.0446 ns</td><td>86.3242 ns</td><td>?</td><td>?</td>
+</tr><tr><td>InvokeMemberGet</td><td>.NET 5.0</td><td>.NET 5.0</td><td>192.6911 ns</td><td>3.8196 ns</td><td>5.3546 ns</td><td>191.1521 ns</td><td>187.0922 ns</td><td>209.2157 ns</td><td>?</td><td>?</td>
+</tr><tr><td>DirectAccessGet</td><td>.NET 6.0</td><td>.NET 6.0</td><td>0.0000 ns</td><td>0.0000 ns</td><td>0.0000 ns</td><td>0.0000 ns</td><td>0.0000 ns</td><td>0.0000 ns</td><td>?</td><td>?</td>
+</tr><tr><td>PrecompiledExpressionGet</td><td>.NET 6.0</td><td>.NET 6.0</td><td>0.7703 ns</td><td>0.0401 ns</td><td>0.0445 ns</td><td>0.7633 ns</td><td>0.7093 ns</td><td>0.8623 ns</td><td>?</td><td>?</td>
+</tr><tr><td>DynamicGet</td><td>.NET 6.0</td><td>.NET 6.0</td><td>10.0569 ns</td><td>0.1941 ns</td><td>0.2523 ns</td><td>9.9602 ns</td><td>9.6713 ns</td><td>10.5755 ns</td><td>?</td><td>?</td>
+</tr><tr><td>ReflectionGet</td><td>.NET 6.0</td><td>.NET 6.0</td><td>69.9650 ns</td><td>0.7774 ns</td><td>0.6891 ns</td><td>69.7796 ns</td><td>68.9714 ns</td><td>71.1391 ns</td><td>?</td><td>?</td>
+</tr><tr><td>InvokeMemberGet</td><td>.NET 6.0</td><td>.NET 6.0</td><td>181.1475 ns</td><td>3.5468 ns</td><td>3.9422 ns</td><td>179.7143 ns</td><td>176.1950 ns</td><td>189.9158 ns</td><td>?</td><td>?</td>
+</tr><tr><td>DirectAccessGet</td><td>.NET 7.0</td><td>.NET 7.0</td><td>0.0091 ns</td><td>0.0136 ns</td><td>0.0121 ns</td><td>0.0032 ns</td><td>0.0000 ns</td><td>0.0336 ns</td><td>?</td><td>?</td>
+</tr><tr><td>PrecompiledExpressionGet</td><td>.NET 7.0</td><td>.NET 7.0</td><td>0.7740 ns</td><td>0.0417 ns</td><td>0.0662 ns</td><td>0.7458 ns</td><td>0.7175 ns</td><td>0.9845 ns</td><td>?</td><td>?</td>
+</tr><tr><td>DynamicGet</td><td>.NET 7.0</td><td>.NET 7.0</td><td>10.3279 ns</td><td>0.1968 ns</td><td>0.4019 ns</td><td>10.3244 ns</td><td>9.5931 ns</td><td>11.2030 ns</td><td>?</td><td>?</td>
+</tr><tr><td>ReflectionGet</td><td>.NET 7.0</td><td>.NET 7.0</td><td>14.9635 ns</td><td>0.3026 ns</td><td>0.2831 ns</td><td>14.9927 ns</td><td>14.5903 ns</td><td>15.4769 ns</td><td>?</td><td>?</td>
+</tr><tr><td>InvokeMemberGet</td><td>.NET 7.0</td><td>.NET 7.0</td><td>97.5237 ns</td><td>0.6287 ns</td><td>0.4909 ns</td><td>97.5512 ns</td><td>96.7663 ns</td><td>98.4551 ns</td><td>?</td><td>?</td>
+</tr><tr><td>DirectAccessGet</td><td>.NET 8.0</td><td>.NET 8.0</td><td>0.0016 ns</td><td>0.0066 ns</td><td>0.0058 ns</td><td>0.0000 ns</td><td>0.0000 ns</td><td>0.0219 ns</td><td>?</td><td>?</td>
+</tr><tr><td>PrecompiledExpressionGet</td><td>.NET 8.0</td><td>.NET 8.0</td><td>0.5081 ns</td><td>0.0261 ns</td><td>0.0244 ns</td><td>0.4978 ns</td><td>0.4777 ns</td><td>0.5514 ns</td><td>?</td><td>?</td>
+</tr><tr><td>DynamicGet</td><td>.NET 8.0</td><td>.NET 8.0</td><td>7.1196 ns</td><td>0.1675 ns</td><td>0.3266 ns</td><td>7.0531 ns</td><td>6.5853 ns</td><td>7.8505 ns</td><td>?</td><td>?</td>
+</tr><tr><td>ReflectionGet</td><td>.NET 8.0</td><td>.NET 8.0</td><td>13.0432 ns</td><td>0.1521 ns</td><td>0.1270 ns</td><td>13.0378 ns</td><td>12.7535 ns</td><td>13.2355 ns</td><td>?</td><td>?</td>
+</tr><tr><td>InvokeMemberGet</td><td>.NET 8.0</td><td>.NET 8.0</td><td>72.3229 ns</td><td>1.3464 ns</td><td>1.2594 ns</td><td>71.8056 ns</td><td>70.5670 ns</td><td>74.7508 ns</td><td>?</td><td>?</td>
+</tr></tbody></table>
+</body>
+</html>
